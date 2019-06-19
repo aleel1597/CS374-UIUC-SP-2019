@@ -1,0 +1,45 @@
+
+public class find missing
+bool first time = true;
+array
+void find missing ( vector)
+{
+    if(len = 1)
+    {
+          if(fetchbit(vector element, l) == 1)
+          return 0
+          else
+          return 1
+
+    }
+
+    list count of zeroes = index of all elements in A with a 0 at the location L
+    list count of ones = index of all elements in A with a 1 at the location L
+    
+    if( first time){
+        for(every vector element){
+            if(fetchbit(vector element, l) == 1) add index  of curr element to list of ones
+            if(fetchbit(vector element, 0) == 0) add index  of curr element to list of zeroes
+        }
+        first time = false;
+        add to list of possible answers 0 + find missing( list of zeroes);
+        add to list of possible answers 1 + find missing(list of ones);
+    }
+    else
+    {
+        for(every index in the passed in that exists in the original array){
+            if(fetchbit(vector[i], l) == 1) add index  of curr element to list of ones
+            if(fetchbit(vector[i], 0) == 0) add index  of curr element to list of zeros
+        }
+        add to list of possible answers 0 + find missing( list of zeroes);
+        add to list of possible answers 1 + find missing(list of ones);
+    }
+}
+
+
+
+
+
+
+
+

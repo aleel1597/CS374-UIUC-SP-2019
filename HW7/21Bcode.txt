@@ -1,0 +1,28 @@
+double MemoLmin[p index][q index][r index]
+
+point[] P, point[] Q, point[] R
+main{
+    return minL(n,n,n)
+}
+minL(pi, qi, ri)
+{
+    if(pi < 0 || qi < 0 || ri < 0) 
+        return
+    if(pi = 0 && qi == 0 && ri == 0)
+        MemoLmin[0][0][0] = max(||P[pi] - Q[qi]||, ||P[pi] - R[ri]||, ||R[ri] - Q[qi]||)
+        return MemoLmin[0][0][0]
+    
+    if (pi, qi, ri) is in MemoLmin:
+        return MemoLmin[pi][qi][ri]
+    
+    MemoLmin[pi][qi][ri] = max(max(||P[pi] - Q[qi]||, ||P[pi] - R[ri]||, ||R[ri] - Q[qi]||), min(
+        minL(pi-1, qi, ri),
+        minL(pi, qi-1, ri),
+        minL(pi, qi, ri-1),
+        minL(pi-1, qi-1, ri),
+        minL(pi, qi-1, ri-1),
+        minL(pi-1, qi, ri-1),
+        minL(pi-1, qi-1, ri-1),
+        ))
+    return MemoLmin[pi][qi][ri]
+}

@@ -1,0 +1,250 @@
+\ifx\AllTogetherMode\undefined%
+\IfFileExists{../prefix.tex}%
+{\input{../prefix}}%
+{\input{prefix}}%
+\fi
+
+\HomeworkStart%
+{3} % Homework number
+{4} % Week of semester submitted
+{1.21} % Version
+
+\SaveIndent%
+
+\begin{questions}[start=7]
+    \RestoreIndent%
+    
+    \medskip%
+    \item \HWProblem{100}{Draw me a giraffe.}{%
+       For each of the following languages in \ref{Q1a}--\ref{Q1c},
+       draw an \NFA that accepts them. Your automata should have a
+       small number of states. Provide a short explanation of your
+       solution, if needed.
+       \begin{questions}%[(A)]
+           \item\label{Q1a} \points{25} %
+           All strings in $\{ \T{0}, \T{1}, \T2 \}^*$ such that at
+           least one of the symbols $\T0$, $\T1$, or $\T2$ occurs at
+           most 4 times.  (Example: $\T{1200201220210}$ is in the
+           language, since $\T1$ occurs $3$ times.)
+
+           \item \points{25} %
+           $\big((\T0\T1)^*(\T1\T0)^* +
+           \T{00}\big)^*\cdot(\T1+\T{00}+\T\eps)\cdot (\T{11})^*$.
+
+           \item\label{Q1c} \points{25} %
+           All strings in $\{\T{0},\T{1}\}^*$ such that the last
+           symbol is the same as the third last symbol.  (Example:
+           $\T{1100101}$ is in the language, since the last and the
+           third last symbol are $\T1$.)
+						
+           \item \points{25} %
+           Use the power-set construction (also called subset
+           construction) to convert your \NFA from \ref{Q1c} to a
+           \DFA.  You may omit unreachable states.
+
+  
+       \end{questions}
+       
+    }{}{}{}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \bigskip%
+    \item \HWProblem{100}{Fun with parity.}{%
+       \newcommand{\EVEN}{\textit{even}_0}
+       \newcommand{\ODD}{\textit{odd}_0}
+    
+       Given $L\subseteq\{\T0,\T1\}^*$, define $\EVEN(L)$ to be the
+       set of all strings in $\{\T0,\T1\}^*$ that can be obtained by
+       taking a string in $L$ and inserting an even number of \T0's
+       (anywhere in the string).  Similarly, define $\ODD(L)$ to be
+       the set of all strings $x$ in $\{\T0,\T1\}^*$ that can be
+       obtained by taking a string in $L$ and inserting an odd number
+       of $\T0$'s.
+       
+       
+       (Example: if $\T{01101}\in L$, then
+       $\T{01010000100}\in\EVEN(L)$.)
+       
+       (Another example: if $L$ is $\T1^*$, then $\EVEN(L)$ can be
+       described by the regular expression
+       $(\T1^*\T0\T1^*\T0)^*\T1^*$.)
+       
+       The purpose of this question is to show that if
+       $L\subseteq\{\T0,\T1\}^*$ is regular, then $\EVEN(L)$ and
+       $\ODD(L)$ are regular.
+       
+       \begin{questions}
+           \item \points{30} %
+           For each of the base cases of regular expressions
+           $\emptyset$, $\T\eps$, $\T0$, and $\T1$, give regular
+           expressions for $\EVEN(L(r))$ and $\ODD(L(r))$.
+
+           \item \points{60} %
+           Given regular expressions for $e_j=\EVEN(L(r_j))$ and
+           $o_j=\ODD(L(r_j))$, for $j\in\{1,2\}$, give regular
+           expressions for
+           \begin{compactenumi}[labelwidth=0.4cm,%
+               itemsep=-0.1cm,%
+               itemindent=0.4cm,align=parleft]
+               \item $\EVEN(L(r_1+r_2))$
+               \item $\ODD(L(r_1+r_2))$
+               \item $\EVEN(L(r_1r_2))$
+               \item $\ODD(L(r_1r_2))$
+               \item $\EVEN(L(r_1^*))$
+               \item $\ODD(L(r_1^*))$
+           \end{compactenumi}
+           Give brief justification of correctness for each of the
+           above.
+
+           \item \points{10} %
+           Using the above, describe (shortly) a recursive algorithm
+           that given a regular expression $r$, outputs a regular
+           expression for $\EVEN(L(r))$ (similarly describe the
+           algorithm for computing $\ODD(L(r))$).
+       \end{questions}
+    }{}{}{}
+    
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \bigskip%
+    \item \HWProblem{100}{``+1''.}%
+    {%
+       \newcommand{\INC}{\mathrm{INC}}%
+       \newcommand{\binary}{\textrm{binary}}%
+       Let $\binary(i)$ denote the binary representation of a positive
+       integer $i$.  (Note that the string $\binary(i)$ must start
+       with a $\T1$.)
+       
+       Given a language $L\subseteq \{\T0,\T1\}^*$, define
+       $\INC(L)=\{\binary(i+1) \mid \binary(i)\in L\}$. For the time
+       being assume that $L$ does not contain any string of $\T1^*$.
+       
+       (Example: for $L=\{\T{100},\T{101011},\T{1101} \}$, we have
+       $\INC(L)=\{\T{101},\T{101100},\T{1110} \}$.)
+       
+       \begin{questions}
+           \item \points{30} Given a \DFA
+           $M = (Q, \Sigma, \delta, s, A)$ for $L$, describe
+           \textbf{informally} (in a few sentences) how to construct
+           an \NFA $M_w$ for $\INC(L)$.
+           
+           
+           \item \itemlab{9:b} \points{30} Given a \DFA
+           $M = (Q, \Sigma, \delta, s, A)$ for $L$, describe
+           \textbf{formally} how to construct an \NFA $M'$ for
+           $\INC(L)$.
+           
+           
+           
+           \item \points{30} Prove formally the correctness of your
+           construction from \itemref{9:b}. That is, prove that
+           $\INC(L) = L(M')$.
+           
+           \item \points{10} Describe formally how to modify the
+           construction of $M'$ from above, to handle that general
+           case (without the above assumption) that $L$ might also
+           contain strings of the form $\T1^*$. You do not need to
+           provide a proof of correctness of the new automata.
+       \end{questions}
+    }{}{}
+
+\end{questions}
+
+
+\HomeworkEnd{}
+
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+
+\bigskip%
+\item \OLDHWProblem{100}{Codes.}{%
+   Let $\Sigma$ be finite alphabet. A \emphi{code} is a mapping
+   $f:\Sigma \rightarrow \brc{\T0,\T1}^+$. For example, if
+   $\Sigma = \brc{ \T{a}, \T{b},\T{c}}$, a code $f$ might be
+   $f( \T{a}) = \T{00010}$, $f( \T{b}) = \T{000}$, and
+   $f( \T{c}) = \T{1}$. (To simplify things, we assume that
+   $f(a) \neq \eps$, for any character $a \in \Sigma$.)
+
+       
+   For a string $w_1 w_2 \cdots w_m \in \Sigma^*$, we define
+   $f(w) = f(w_1) f(w_2) \cdots f(w_m)$. In the above code, we have
+   \begin{align*}
+     f( \T{abcba})%
+     =%
+     \T{00010}%
+     \Cdot%
+     \T{000} %
+     \Cdot%
+     \T{1}%
+     \Cdot%
+     \T{000} %
+     \Cdot%
+     \T{00010}.
+     =
+     \T{00010}%
+     \T{000} %
+     \T{1}%
+     \T{000} %
+     \T{00010}.
+   \end{align*}
+
+   \medskip%
+   \begin{questions}%[(A)]
+       \item \points{10} Let $L$ be the language of the following \DFA
+       $M$. What is $L$?
+
+       \centerline{\includegraphics[scale=0.35]%
+          {\File{figs/dfa}}}%
+
+           
+       \item \points{20} Working directly on the \DFA $M$ from (A)
+       construct an \NFA for the language $f(L)$. Here
+       $f(L) = \Set{f(w)}{w \in L}$ is the \emph{code language}. Where
+       $f$ is code from the above example.
+
+
+       \medskip%
+       \item \points{30} Let $L \subseteq \Sigma^*$ be am arbitrary
+       regular language. Prove that the encoded language
+       $f(L) = \Set{f(w)}{w \in L}$ is regular.
+
+       \medskip%
+       Specifically, given a \DFA $M = (Q, \Sigma, \delta, s, A)$ for
+       $L$, describe how to build an \NFA $M'$ for $f(L)$. Give an
+       upper bound on the number of states of $M'$.
+           
+       (I.e., You need to prove the correctness of your construction
+       -- that the language of the constructed \NFA is indeed the
+       desired language $f(L)$.)
+
+       (Rubric: Half the credit is for a correct construction, and the
+       other half is for a correct proof of correctness.)
+
+           
+           
+           
+       \medskip%
+       \item \points{40} Let $L \subseteq \brc{\T0,\T1}^*$ be a
+       regular language. Consider the decoded language
+       $L_f = \Set{ w \in \Sigma^*}{f(w) \in L}$.
+
+       Prove that $L_f$ is a regular language. As above, given a \DFA
+       $M$ for $L$, describe how to construct an \NFA for $L_f$.
+
+       (Rubric: Half the credit is for a correct construction, and the
+       other half is for a correct proof of correctness.)
+
+           
+           
+   \end{questions}
+       
+}{}{}{}
+    
+

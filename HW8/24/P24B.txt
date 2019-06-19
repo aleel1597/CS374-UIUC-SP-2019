@@ -1,0 +1,15 @@
+main(G):
+    G_r = graph_reverse(G) //flip all edges in graph, O(m)
+
+    return find_longest_path(G_r, v) - v.time for each vertex v in G
+
+graph_reverse(G):  //O(m)
+    for all edges in G:
+        edge(u,v) = edge(v,u)
+    return G
+
+find_longest_path(G, v):
+    if v has no children:
+        return v.time
+
+    return v.time + max(find_longest_path for each of v.children)

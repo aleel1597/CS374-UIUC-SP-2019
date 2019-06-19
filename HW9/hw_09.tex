@@ -1,0 +1,112 @@
+\ifx\AllTogetherMode\undefined%
+\IfFileExists{../prefix.tex}%
+{\input{../prefix}}%
+{\input{prefix}}%
+\fi
+
+\HomeworkStart%
+{9} % Homework number
+{12} % Week of semester submitted
+{1.01} % Version
+
+\SaveIndent%
+\HWInstructionsStd{}%
+
+\HWInstructions{%
+
+   % Do not use hashing or dictionary data-structures in the solutions
+   % of the questions here.
+   Any dynamic programming solution should be done using an iterative
+   algorithm.
+
+}
+
+\noindent%
+
+
+\begin{questions}[start=25]
+    \RestoreIndent%
+
+    \item
+
+    \HWProblem{100}{Rainbow walk}{ We are given a directed graph with
+       $n$ vertices and $m$ edges ($m\ge n$), where each edge $e$ has
+       a color $c(e)$ from $\{1,\ldots,k\}$.
+
+       \begin{questions}
+           \item \points{20} Describe an algorithm, as fast as
+           possible, to decide whether there exists a closed walk that
+           uses all $k$ colors.  (In a walk, vertices and edges may be
+           repeated.  In a closed walk, we start and end at the same
+           vertex.)
+
+           \item \points{80} Now, assume that there are only 3 colors,
+           i.e., $k=3$.  Describe an algorithm, as fast as possible,
+           to decide whether there exists a walk that uses all 3
+           colors.  (The start and end vertex may be different.)
+       \end{questions}
+
+    }{}{}{}
+
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    \item \HWProblem{100}{Stay safe}{ We are given an
+       \emph{undirected} graph with $n$ vertices and $m$ edges
+       ($m\ge n$), where each edge $e$ has a positive real weight
+       $w(e)$, and each vertex is marked as either ``safe'' or
+       ``dangerous''.
+
+       \begin{questions}
+           \item \points{35} Given safe vertices $s$ and $t$, describe
+           an $O(m)$-time algorithm to find a path from $s$ to $t$
+           that passes through the smallest number of dangerous
+           vertices.
+
+           \item \points{65} Given safe vertices $s$ and $t$ and a
+           value $W$, describe an algorithm, as fast as possible, to
+           find a path from $s$ to $t$ that passes through the
+           smallest number of dangerous vertices, subject to the
+           constraint that the total weight of the path is at most
+           $W$.
+       \end{questions}
+
+    }{}{}{}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \item \HWProblem{100}%
+    {Stay stable}%
+    {%
+       We are given a directed graph with $n$ vertices and $m$ edges
+       ($m\ge n$), where each edge $e$ has a weight $w(e)$ (you can
+       assume that no two edges have the same weight).  For a cycle
+       $C$ with edge sequence $e_1e_2\cdots e_\ell e_1$, define the
+       \emph{fluctuation} of $C$ to be
+       \[
+           f(C) = |w(e_1)-w(e_2)| + |w(e_2)-w(e_3)| + \cdots +
+           |w(e_\ell)-w(e_1)|.
+       \]
+
+       \begin{questions}
+           \item \points{10} Show that the cycle with the minimum
+           fluctuation cannot have repeated vertices or edges, i.e.,
+           it must be a simple cycle.
+           \item \points{90} Describe a polynomial-time algorithm, as
+           fast as possible, to find the cycle with the minimum
+           fluctuation.
+       \end{questions}
+
+
+    }{}{}{}
+
+\end{questions}
+
+
+\HomeworkEnd{}
+

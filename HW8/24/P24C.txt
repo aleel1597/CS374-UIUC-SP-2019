@@ -1,0 +1,9 @@
+main(G, overall_completion_time):
+    for v in G {
+        G_vsubgraph = subgraph of G including only v and all its descendents //O(n)
+
+        time_needed = problem_A(G_vsubgraph) //main function from problem A
+
+        latest_times[v] = overall_completion_time - time_needed
+    }
+    return latest_times

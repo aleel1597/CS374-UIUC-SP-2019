@@ -1,0 +1,22 @@
+
+Find_SCC: // from 3/14/19 lecture
+    DFSAll(G)
+    DFSAll(Gr)
+    return SCC_list // list SCCs with a list of vertices within each 
+
+Rainbow_Walkpt2:
+    arrange SCC_list into a DAG metagraph
+
+    //returns a list of metagraph nodes in topologically sorted order
+    Topological_meta_graph[] = run DFSall and DFSall reverse 
+
+    color_needed_list = [1..k]
+
+    for(every metagraph node v in Topological_meta_graph[])
+    {
+        remove colors contained in Topological_meta_graph[v]
+        if(color_needed_list.isempty)
+            return true
+    }
+    return false
+

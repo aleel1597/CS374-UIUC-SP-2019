@@ -1,0 +1,15 @@
+Find_SCC: // from 3/14/19 lecture
+    DFSAll(G)
+    DFSAll(Gr)
+    return SCC_list // list SCCs with a list of vertices within each 
+
+Rainbow_Walk:
+    scc_list = Find_SCC
+    for each scc in scc_list: 
+        color_list = [1..k]
+        for each vertex v within scc: 
+            for each adjacent vertex u within scc:
+                mark color of edge (v,u) in color_list 
+        if color_list is completely marked:
+            return true
+    return false

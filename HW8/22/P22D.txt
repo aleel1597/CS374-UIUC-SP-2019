@@ -1,0 +1,23 @@
+StronglyConnectGraph(G)
+{
+    explore = new empty stack
+    Graph StronglyConnected = new Graph(V,E' = []) //instantiate new graph with empty edges
+
+    //choose some random vertex v
+
+    vertex v = verticies.top
+
+    explore.push(v)
+    While (explore != empty)
+    {
+        u = explore.pop()
+        neighbor = u.neighbor() //a single unmarked neighbor of u
+        if(neighbor is unmarked & n is not equal to v)
+        {
+            explore.push(neighbor)
+        }
+        mark neighbor as visited
+        E'.add(u,neighbor)
+        E.remove(u,n)
+    }
+}

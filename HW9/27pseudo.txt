@@ -1,0 +1,55 @@
+func main(Graph G):
+
+    create arr lowest_fluc_cycles   //array of lowest fluctuation cycles for each vertex v
+
+    for vertex v in V: // O(n) iterations
+
+        // find paths to all vertices from v, s.t. paths have lowest fluctuation
+
+        fluc[], prev[] = mod_Dijkstra(G, v)    //O(m + nlogn) call
+
+        create arr candidates  //'shortest' cycles containing v
+
+        for vertex u where there exists e(u,v):     //for all back edges to v
+            candidates[u] = (fluc[u] + |e(u,v) - e(u,prev[u])|)   //calculate fluctuation of that cycle
+
+        smallest_fluc_u = minimum(candidates)  //find candidate with smallest fluctuation O(n), quickselect
+
+        lowest_fluc_cycles[v] = (prev[smallest_fluc_u], candidates[smallest_fluc_u]) //store path and fluctuation in function-level array
+
+    solution = minimum(lowest_fluc_cycles)   //select path with lowest fluctuation O(n), quickselect
+
+    return solution[0] //return path of lowest fluctuation
+
+
+function mod_Dijkstra(Graph, source): 
+    //This pseudocode is taken from wikipedia so as to modify it for our purposes.
+    //Source: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+    //Instead of minimizing path length, minimizes fluctuation. Same run time.
+
+    create vertex set Q
+
+    for each vertex v in Graph:             
+        fluc[v] ← INFINITY      //modified line
+        prev[v] ← UNDEFINED
+        add v to Q
+    fluc[source] ← 0
+    
+    while Q is not empty:
+        u ← vertex in Q with min fluc[u]
+
+        remove u from Q 
+      
+        for each neighbor v of u:
+            if prev[u] exists:  //inserted line
+                alt ← fluc[u] + |length(u, v) - length(prev[u], u)| //modified line
+            else:               //inserted line
+                alt ← fluc[u]   //inserted line
+
+            if alt < fluc[v]:
+                fluc[v] ← alt
+                prev[v] ← u
+                if prev[u] exists: //inserted line
+                    fluc[v] += |length(u, v) - length(prev[u], u)|  //inserted line
+
+    return fluc[], prev[]

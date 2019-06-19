@@ -1,0 +1,23 @@
+given G = (V, E) and s,t in V
+n = |V|
+
+E' = {} //empty set of edges
+G' = (V, E')
+
+toExplore = stack()
+visited = [1...n] <-- FALSE
+
+toExplore.push(s)
+
+while toExplore is not empty {
+    node = toExplore.pop()
+    for each neighbor of node in G{
+        E'.add_edge(node, neighbor)
+        if neighbor != t and visited[neighbor] == FALSE {
+            toExplore.push(neighbor)
+        }
+    }
+    visited[node] = TRUE
+}
+
+return G'

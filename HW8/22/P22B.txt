@@ -1,0 +1,20 @@
+main():
+    initalize parent array, mark all as unvisited, make discovery/earliest inf, 
+    bridgeFind(0, u)
+
+
+bridgeFind(clock, v):
+    marked[v] = True
+    discovery[v] = clock
+    earliest[v] = clock 
+    clock = clock++
+    for u in v's adjacent vertices
+        if marked[u] == False:
+            parent[u] = v
+            bridgeFind(clock, u)
+            earliest[u]= min(earliest[v], earliest[u])
+            //if the node with min discovery time from u is lower than v we have a bridge
+            if(earliest[u] > discovery[v]):
+                return (u,v)
+        else if parent[u] != v:
+            earliest[v] = min(earliest[v], discovery[u])

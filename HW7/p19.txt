@@ -1,0 +1,29 @@
+
+
+start state, delta transitions [], alphabet [], accepting state, states[] are global 
+
+main (){
+    find shortest super string
+    find min in stored array and return it
+}
+Find shortest super string (current state, string w, current index, retval)
+{
+    if (current state == accepting state && current index == w.length)
+    {
+        store retval in some possible result array
+    }
+    else
+    {
+        for every character c in the alphabet for the delta transitions for current state
+        {
+            if(C == w[current index])
+                current index ++;
+                retval += c
+            else
+                retval += c
+            
+            findshortestsuperstring(delta(current state, c), w, current index, retval)
+        }
+    }
+}
+
